@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SYSTEM:GLITCH</title>
+  <style>
+    body {
+      background-color: black;
+      color: #33ff33;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      overflow: hidden;
+    }
+    #terminal {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hidden {
+      display: none;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <p>BLACK HAT INTERFACE // PROJECT: SYSTEM:GLITCH</p>
+    <p>Enter Access Code:</p>
+    <input type="text" id="codeInput" autofocus />
+    <button onclick="verifyCode()">Submit</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const correctCode = "∆R1FT-N0ISE"; // you can change this
+    function verifyCode() {
+      const input = document.getElementById('codeInput').value.trim();
+      const output = document.getElementById('output');
+      output.innerHTML = "";
+      if (input === correctCode) {
+        output.innerHTML = `
+          <p class="success">Access Granted.</p>
+          <p>Initializing SYSTEM:GLITCH...</p>
+          <pre>
+  Uploading Payload: ████████████████████████ 100%
+  Target Acquired.
+  Status: INFECTED
+  Trace Status: [ UNDETECTED ]
+  </pre>
+        `;
+      } else {
+        output.innerHTML = `<p class="error">ACCESS DENIED. Invalid code.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
