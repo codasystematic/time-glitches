@@ -92,6 +92,7 @@
   </style>
 </head>
 <body>
+  
   <div id="terminal">
     <p class="typewriter">BLACK HAT INTERFACE // PROJECT: SYSTEM:GLITCH</p>
     <p class="glitch">Enter Access Code:</p>
@@ -99,8 +100,39 @@
     <button onclick="verifyCode()">Submit</button>
     <div id="output"></div>
   </div>
+<!-- Place this inside <body> -->
+<audio id="startup" src="https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-game-over-213.wav" preload="auto"></audio>
+<audio id="success" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-score-interface-217.wav" preload="auto"></audio>
+<audio id="error" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-bass-buzzer-947.wav" preload="auto"></audio>
 
   <script>
+    window.onload = () => {
+  document.getElementById('startup').play();
+};
+
+function verifyCode() {
+  const input = document.getElementById('codeInput').value.trim();
+  const output = document.getElementById('output');
+  output.innerHTML = "";
+
+  if (input === correctCode) {
+    document.getElementById('success').play();
+    output.innerHTML = `
+      <p class="success glitch">Access Granted.</p>
+      <pre class="glitch">
+  Initializing SYSTEM:GLITCH...
+  Uploading Payload ██████████████████████ 100%
+  Target Acquired
+  Infection Status: COMPLETE
+  Trace Status: [ UNDETECTED ]
+      </pre>
+    `;
+  } else {
+    document.getElementById('error').play();
+    output.innerHTML = `<p class="error glitch">ACCESS DENIED. Invalid code.</p>`;
+  }
+}
+
     const correctCode = "∆R1FT-N0ISE"; // Customize this
     function verifyCode() {
       const input = document.getElementById('codeInput').value.trim();
